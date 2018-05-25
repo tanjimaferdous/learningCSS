@@ -1,0 +1,1370 @@
+<p style="color: red;">I'm learning to code!</p>
+/*
+Inline Styling: it's possible to write CSS code directly within HTML code using inline styles. 
+To style an HTML element, you can add the 'style' attribute directly to the opening tag. 
+After you add the attribute, you can set it equal to the CSS style(s) you'd like applied to that element.
+If you'd like to add more than one style with inline styles, simply keep adding to the style attribute.
+Make sure to end the styles with a semicolon (;).
+*/
+<p style="color: red; font-size: 20px;">I'm learning to code!</p>
+
+/*
+Inline styles are a fast but has limitations. If you wanted to style, for example, multiple <h1> elements, 
+you would have to add inline styling to each element manually as well as maintain the HTML code when additional <h1> elements are added.
+Fortunately, HTML allows you to write CSS code in its own dedicated section with the <style> element. 
+CSS can be written between opening and closing <style> tags. To use the <style> element, it must be placed inside of the <head> element.
+After adding a <style> tag in the head section, you can begin writing CSS code.
+*/
+<head>
+  <style>
+    p {
+      color: red;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+===================================
+
+<link rel="stylesheet" type="text/css" href=""> 
+/*
+Linking separarted Stylesheet: For better maintainability, HTML and CSS files are written and kept seperately.
+Then by using the <link> element as the child of HTML's <head> element,
+the CSS file/s get attached. It's a self closing element and requires three attributes:
+href — the address, or path, to the CSS file.
+type — the type of document being linked. The value is set to text/css representing a CSS file
+rel — the relationship between the HTML file and the CSS file. set to stylesheet as CSS is stylesheet
+*/
+
+=====================================
+/* CSS Structure: Callse the CSS rule. The entire snippet of code in the example below is known as a CSS rule or rule set. 
+A CSS rule consists of the selector (here, h1) and all declarations inside of the selector.
+*/
+
+
+h1{ /*CSS Selector/element selector; h1 is for h1 header tag <h1>*/
+  color: maroon;  /*CSS declaration*/
+}
+
+/*CSS declarations consist of a property and a value.
+Property — the property you'd like to style of that element (i.e., size, color, etc.).
+Value — the value of the property (i.e., 18px for size, blue for color, etc.).
+The property and value are separated by a colon (:). A semicolon (;) should always be used at the end of a declaration.
+*/
+
+=====================================
+
+
+/*Element Selector by tag name: CSS can select HTML elements by using an element's tag name. 
+A tag name is the word (or character) between HTML angle brackets.*/
+
+p{ /*element selector; p is for paragraph tag <p>*/
+}
+h1{ /*element selector; h1 is for h1 header tag <h1>*/
+  color: maroon;
+}
+
+=====================================
+
+/*
+Element selector by class attribute: CSS is not limited to selecting elements by tag name. HTML elements can have more than just a tag name; 
+they can also have attributes. One common attribute is the class attribute. 
+It's also possible to select an element by its class attribute.
+The paragraph element in the example below has a class attribute within the <p> tag. 
+The class attribute is set to "brand". To select this element using CSS, we could use the class attribute CSS selector like below:
+*/
+
+<p class="brand">Sole Shoe Company</p> /*attribute is class*/
+.brand{ /*class attribute selector. To select an HTML element by its class, a period (.) must be prepended to the class's name.*/
+}
+
+<h1 class="green bold"></h1> /*multiple class attribute*/
+.green {
+  color: green;
+}
+.bold {
+  font-weight: bold;
+}
+.uppercase{
+  text-transform: uppercase; /*'text-transform' for case*/
+}
+
+=======================================
+/*Element selector by id attribute: CSS can select HTML elements by their id attribute. 
+To select an id element, CSS prepends the id name with a hashtag (#).
+*/
+<h1 id="large-title"> ... </h1> /
+#large-title { /*id attribute selector*/
+}
+
+======================================
+/*Class & ID Attributes: classes and IDs have different purposes, which can affect which one you use to style HTML elements.
+CSS classes are meant to be reused over many elements. By writing CSS classes, you can style elements in a variety of ways 
+by mixing classes on HTML elements. For instance, imagine a page with two headlines. One headline needs to be bold and blue, 
+and the other needs to be bold and green. Instead of writing separate CSS rules for each headline that repeat each other's code, 
+it's better to write a .bold CSS rule, a .green CSS rule, and a .blue CSS rule. 
+Then you can give one headline the bold green classes, and the other the bold blue classes.
+While classes are meant to be used many times, an ID is meant to style only one element. IDs override the styles of tags 
+and classes. Since IDs override class and tag styles, they should be used sparingly and only on elements that need to always appear the same.
+*/
+=======================================
+/*Specificity: It is the order by which the browser decides which CSS styles will be displayed.
+IDs are the most specific selector in CSS, followed by classes, and finally, tags. 
+A best practice in CSS is to style elements while using the lowest degree of specificity, 
+so that if an element needs a new style, it is easy to override.
+In the example code below, the color of the heading would be set to firebrick, as the class selector is more specific than 
+the tag selector. If an ID attribute (and selector) were added to the code above, the styles within the ID selector's body would 
+override all other styles for the heading. The only way to override an ID is to add another ID with additional styling.
+*/
+<h1 class="headline">Breaking News</h1>
+h1 {
+  color: red;
+}
+.headline {
+  color: firebrick;
+}
+
+/*Over time, as files grow with code, many elements may have IDs, which can make CSS difficult to edit, 
+since a new, more specific style must be created to change the style of an element. 
+To make styles easy to edit, it's best to style with a tag selector, if possible. 
+If not, add a class selector. If that is not specific enough, then consider using an ID selector.
+*/
+/*Adding more than one tag, class, or ID to a CSS selector increases the specificity of the CSS selector.
+For instance, consider the following 2 CSS. Both of these CSS rules define what a p element should look like. 
+Since .main p has a class and a p tag as its selector, only the p elements inside the .main element will appear red. 
+This occurs despite there being another more general rule that states p elements should be blue.
+*/
+
+p {
+  color: blue;
+}
+
+.main p {
+  color: red;
+}
+===============================================
+
+/*Chaining selector: to indicate a specfic element with specific class. When writing CSS rules, it's possible to require 
+an HTML element to have two or more CSS selectors at the same time. This is done by combining multiple selectors, 
+which we will refer to as chaining. Those selectors are combined with dot(.). 
+In the example below, if there was a .special class for h1 elements, the CSS would look like below.
+this rule will only apply to the h1 elements that have a class of special. 
+However, if a p element also had a class of special, the rule in the example would not style the paragraph
+*/
+h1.special {
+
+}
+
+================================================
+
+/*Nested element selector: Referring the below example, this rule will first find a parent element that is 
+carrying a class attribute 'main-list'. then this rule will be applied only on the nested/child element <li> 
+under that parent element. These selectors are combined with space.
+*/
+.main-list li{ 
+}
+
+#banner .content h1 {
+  position: relative;
+  top: 50px;
+  margin: 0 auto;
+}
+=================================================
+
+/* '!important' attribute to override any rule/specificity: There is one thing that is even more specific than IDs: '!important'. It can be applied to specific attributes 
+instead of full rules. It will override any style no matter how specific it is. As a result, it should almost never be used. 
+Once !important is used, it is very hard to override.
+In the below example of 2 CSS, since !important is used on the p selector’s color attribute, all p elements will appear blue, 
+even though there is a more specific .main p selector that sets the color attribute to red.
+The !important flag is only useful when an element appears the same way 100% of the time. 
+Since it's almost impossible to guarantee that this will be true throughout a project and over time, 
+it's best to avoid !important altogether. If you ever see !important used (or are ever tempted to use it yourself) 
+we strongly recommend reorganizing your CSS. Making your CSS more flexible will typically fix the immediate problem 
+and make your code more maintainable in the long run. 
+*/
+
+p {
+  color: blue !important;
+}
+
+.main p {
+  color: red;
+}
+
+===============================================
+/*Defining css for multiple selectors at a time: When different selectors have same CSS rules, 
+it's possible to add CSS styles to multiple CSS selectors all at once to make CSS more concise.
+We do it by separating the CSS selectors with a comma.
+*/
+h1 {
+  font-family: Georgia;
+}
+
+.menu {
+  font-family: Georgia;
+}
+
+/*The above CSS rules can be written together as below:*/
+
+h1, .menu { 
+  font-family: Georgia;
+}
+
+============================================
+/*SUMMARY OF ABOVE*/
+/*
+* CSS can change the look of HTML elements. In order to do this, CSS must select HTML elements, then apply styles to them.
+* CSS can select HTML elements by tag, class, or ID.
+* Multiple CSS classes can be applied to one HTML element.
+* Classes can be reusable, while IDs can only be used once.
+* IDs are more specific than classes, and classes are more specific than tags. 
+  That means IDs will override any styles from a class, and classes will override any styles from a tag selector.
+* Multiple selectors can be chained together to select an element. This raises the specificity, but can be necessary.
+* Nested elements can be selected by separating selectors with a space.
+* The !important flag will override any style, however it should almost never be used, as it is extremely difficult to override.
+* Multiple unrelated selectors can receive the same styles by separating the selector names with commas.
+*/
+============================================
+/*Typography
+It's the art of arranging text on a page. In particular, we'll look at how to style fonts with CSS 
+to make them legible and appealing and how to add external fonts to your web pages.
+Some of the most important information a user will see on a web page will be textual. 
+Styling text to make page content accessible and engaging can significantly improve user experience. 
+If you've ever used a formatted word processor, chances are that you probably also used a feature 
+that allowed you change the "type of font" you were typing in. 
+The phrase "type of font" refers to the technical term typeface, or font family.
+To change the typeface of text on your web page, you can use the font-family property.
+*/
+================================================
+/*CSS property: font-family (also called Typeface)
+* The font specified in a stylesheet must be installed on a user's computer to have it displayed when a user visits the web page.
+* The default typeface for all HTML elements is Times New Roman. The HTML file uses it if no font-family attribute is defined.
+* Good practice is to limit the number of typefaces used on a web page to 2 or 3; helps the page load faster in some cases and is usually a good design decision.
+* When the name of a typeface consists of more than one word, it's a best practice to enclose the typeface's name in quotes.
+https://www.cssfontstack.com/
+*/
+h1 {
+  font-family: "Courier New";
+}
+
+/*multiple font family*/
+.main {
+  font-family: "Open Sans", Helvetica, sans-serif;
+}
+
+============================================
+/*CSS property: font-size
+the size of text on web page can be set by font-size property.
+unit of font-size is px, means pixels*/
+p {
+  font-size: 18px;
+}
+============================================
+/*CSS property: font-weight 
+It controls how bold or thin text appears
+Possible values are: bold & normal
+Some elements, like headers, have built-in bold styling. 
+A good approach is to check to see if the the text element has any default styling, 
+and use the font-weight property accordingly.*/
+p {
+  font-weight: bold;
+}
+
+/*The font-weight property can also be assigned a number value to style text on a numeric scale ranging from 100 to 900. 
+Valid values are multiples of 100 within this range such as 200 or 500.
+When using numeric weights, there are a number of default font weights that we can use:
+400 is the default font-weight of most text.
+700 signifies a bold font-weight.
+300 signifies a light font-weight.
+*/
+header {
+  font-weight: 800;
+}
+
+footer {
+  font-weight: 200;
+}
+============================================
+/*CSS Property: font-style
+The italic value causes text to appear in italics. The font-style property also has a normal value which is the default.
+*/
+h3 {
+  font-style: italic;
+}
+
+============================================
+/*Fallback Font: 
+What happens when a stylesheet requires a font that is not installed on a user's computer?
+Most computers have a small set of typefaces pre-installed. This small set includes serif fonts like Times New Roman 
+and sans-serif fonts like Arial. These pre-installed fonts serve as fallback fonts, spare font to use 
+if the stylesheet specifies a font which is not installed on a user's computer.
+To use fallback fonts, the following syntax is required:
+*/
+h1 {
+  font-family: "Garamond", "Times", serif;
+}
+/*The CSS rule above says:
+Use the Garamond font for all <h1> elements on the web page.
+If Garamond is not available, use the Times font.
+If Garamond and Times are not available, use any serif font pre-installed on the user's computer.
+The fonts specified after Garamond are the fallback fonts (Times, serif). 
+Fallback fonts help ensure a consistent experience for the diverse audience of users that visit a site.
+*/
+
+============================================
+/*Linking Fonts using <link> tag and 3rd party library:
+With the number of fonts available with modern typography, it is unrealistic to expect users to have all fonts installed 
+on their computers. New fonts are often centralized in directories made available for public use. We refer to these fonts 
+as non-user fonts. Google Fonts (https://fonts.google.com/) is one such directory of thousands of open-source fonts, 
+available for free use. Google Fonts gives us a way to retrieve the link for a single font, multiple fonts, 
+or multiple fonts with the font-weight and font-style properties.
+When we have the link to the font of our choice, we can add the font to the <head> section of the HTML document, 
+using the <link> tag and the href. Let's take a look at a few examples; 
+Once a font is linked, we can create CSS selectors to target elements, just as we do with other fonts.
+
+1. Below is a single linked font, using Droid Serif as an example:
+*/
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif" type="text/css" rel="stylesheet">
+</head>
+
+/*
+2. Below is Multiple linked fonts, using the Droid Serif and Playfair Display fonts as an example:
+*/
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Playfair+Display" type="text/css" rel="stylesheet">
+</head>
+
+/*
+3. Below is Multiple linked fonts, along with weights and styles. Here Droid Serif has font weights of 400, 700, and 700i, 
+while Playfair Display has font weights of 400, 700, and 900i:
+*/
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,700i|Playfair+Display:400,700,900i" rel="stylesheet">
+</head>
+
+============================================
+/*Linking Fonts using CSS property: @font-face
+CSS offers a way to import fonts from 3rd party library to directly into stylesheets with the @font-face property.
+To load fonts with the @font-face property:
+  - Instead of using the font's link in the HTML document, enter the link into the URL bar in the browser.
+  - The browser will load the CSS rules. You will need to focus on the rules that are directly labeled as /*latin*/          /*   
+    Some of the latin rules are on separate lines. You will need each of these.
+  - Copy each of the CSS rules labeled latin, and paste the rules from the browser to the top of style.css.
+  - Once copied, we can then use the fonts in the stylesheets as you would use any other font using the @font-face property
+    and using the font to style our page.
+
+It is important to stress the need to copy the @font-face rules to the top of the stylesheet 
+for the font to load correctly in the project.
+https://fonts.google.com/?query=Space+Mono&selection.family=Space+Mono:400,700
+https://fonts.googleapis.com/css?family=Space+Mono:400,700/
+*/
+
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Space Mono'), local('SpaceMono-Regular'), url(https://fonts.gstatic.com/s/spacemono/v2/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Space Mono Bold'), local('SpaceMono-Bold'), url(https://fonts.gstatic.com/s/spacemono/v2/i7dMIFZifjKcF5UAWdDRaPpZUFWaHg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+But what if you wish to use an entirely different font or don't want to use a font from an external service, 
+rather like to use a little modified versions of local font file? 
+We can absolutely do so by modifying our @font-face rule to use local font files as well. 
+We can supply the user with the desired font family and host it along with our site's stylesheet instead 
+of depending on a different site.
+In the example below, Here, you'll notice that the main difference is the use of a relative filepath instead of a web URL.
+*/
+
+@font-face {
+  font-family: "Roboto";
+  src: url(fonts/Roboto.woff2) format('woff2'),
+       url(fonts/Roboto.woff) format('woff'),
+       url(fonts/Roboto.tff) format('truetype');
+}
+
+/*
+We add a format for each file to specify which font to use. Different browsers support different font types, 
+so providing multiple font file options will support more browsers. As of now .woff2 appears to be the way of the future, 
+due to greatly reduced file sizes and improved performance, but many browsers still don’t support it. 
+There are lots of great sources to find fonts to use locally, such as Font Squirrel (https://www.fontsquirrel.com/).
+*/
+============================================
+/*CSS Property: word-spacing
+You can increase the spacing between words in a body of text, technically known as word spacing using word-spacing property:
+The default amount of space between words is usually 0.25em. In the example above, the word spacing is set to 0.3em, 
+which represents an increase of only .05em in word spacing. It's not common to increase the spacing between words, 
+but it may help enhance the readability of bolded or enlarged text. Note, again, that the preferred unit is ems.
+
+*/
+h1 {
+  word-spacing: 0.3em;
+}
+
+============================================
+/*CSS Property: letter-spacing
+it's possible to get even more detailed: increasing the spacing between individual letters.
+The technical term for adjusting the spacing between letters is called "kerning". 
+Kerning can be adjusted with the letter-spacing property in CSS.
+*/
+h1 {
+  letter-spacing: 0.3em;
+}
+==============================================
+
+/*CSS Property: text-align
+By default, text always appears on the left side of the browser. 
+This property will align text as we want to the element that holds it.
+The text-align property can have one of the following three values: left, center and right */
+
+h1 {
+  text-align: right;
+}
+
+==============================================
+/*CSS Property: line-height
+This property modifies the leading (area/space/pad right on top of the text) of text. Line height is the sum of
+the text size and this leading area. We often modify line-height to make text on a web page easier to read. 
+When text is styled to appear larger, the vertical spacing between lines of text can decrease, 
+creating text that is difficult to read, particularly in paragraphs. We can use the line-height property to set 
+how tall we want the line containing our text to be, regardless of the height of the text. 
+Line heights can take one of several values:
+1. A unitless number, such as 1.2
+   This number is an absolute value that will compute the line height as a ratio of the font size.
+2. A number specified by unit, such as 12px 
+   This number can be any valid CSS unit, such as pixels, percents, ems, or rems.
+
+Generally, the unitless ratio value is the preferred method, since it is responsive and based exclusively on the current font size. 
+In other words, if we change the font size, a unitless line-height would automatically readjust, 
+whereas the pixel value would remain static.
+*/
+p {
+  line-height: 1.4;
+}
+
+==============================================
+
+
+/*CSS Property: text-transform
+Text can also be styled to appear in either all uppercase or lowercase with the text-transform property.
+*/
+h1 {
+  text-transform: uppercase;
+}
+
+============================================
+/*SUMMARY OF TYPOGRAPHY
+1. Typography is the art of arranging text on a page.
+2. Text can appear in any number of weights, with the font-weight property.
+3. Text can appear in italics with the font-style property.
+4. The vertical spacing between lines of text can be modified with the line-height property.
+5. Serif fonts have extra details on the ends of each letter. Sans-Serif fonts do not.
+6. Fallback fonts are used when a certain font is not installed on a user's computer.
+7. Google Fonts provides free fonts that can be used in an HTML file with the <link> tag or the @font-face property.
+8. Local fonts can be added to a document with the @font-face property and the path to the font's source.
+9. The word-spacing property changes how far apart individual words are.
+10. The letter-spacing property changes how far apart individual letters are.
+11. The text-align property changes where text horizontally on a page.
+*/
+
+=============================================
+/*CSS property: color & background-color 
+Color can affect the following design aspects:
+color: this property styles an element's foreground color
+background-color: this property styles an element's background color
+*/
+h1 {
+  color: red;
+  background-color: blue;
+}
+============================================
+/*CSS property: opacity
+Opacity is the measure of how transparent an element is. 
+It's measured from 0 to 1, with 1 representing 100%, or fully visible and opaque, and 0 representing 0%, or fully invisible.
+Opacity can be used to make elements fade into others for a nice overlay effect. */
+.overlay {
+  opacity: 0.5;
+}
+=============================================
+/*CSS property: background-image 
+This property can be used to set an image on the background of an element
+The value provided to 'background-image' is a url (notice it's an 'url() function') and it should be a url to an image. 
+The url can be a file within your project, or it can be a link to an external site. 
+To link to an image inside an existing project, you must provide a relative file path. */
+
+body
+{
+  background-image: url('https://s3.amazonaws.com/codecademy-content/courses/freelance-1/unit-2/selga.png');
+}
+
+.main-banner {
+  background-image: url("images/mountains.jpg");
+}
+=============================================
+/*CSS property: list-style
+For the bullets/pointers of list elements*/
+.ingredients {
+  list-style: square;
+}
+===========================================
+/*SUMMARY OF ABOVE 
+* CSS declarations are structured into property and value pairs.
+* The font-family property defines the typeface of an element.
+* font-size controls the size of text displayed.
+* font-weight defines how thin or thick text is displayed.
+* text-align property places text in the left, right, or center of its parent container.
+* Text can have two different color attributes: color and background-color. color defines the color of the text, 
+  while background-color defines the color behind the text.
+* CSS can make an element transparent with the opacity property.
+* CSS can also set the background of an element to an image with the background-image property.
+*/
+============================================
+
+/*styling the bullets on a list can be done with css property list-style*/
+.ingredients
+{
+  list-style: square;
+}
+
++========================================================
+/*The Box Model
+If you have used HTML and CSS, you have unknowingly seen aspects of the box model. 
+For example, if you have set the background color of an element, 
+you may have noticed that the color was applied not only to the area directly behind the element, 
+but also to the area to the right of the element. 
+Also, if you have aligned text, you know it is aligned relative to something. 
+What is that something?
+
+All elements on a web page are interpreted by the browser as "living" inside of a box. 
+This is what is meant by the box model.
+
+For example, when you change the background color of an element, 
+you change the background color of its entire box.
+
+The aspects of the box model are:
+
+The dimensions of an element's box.
+The borders of an element's box.
+The paddings of an element's box.
+The margins of an element's box.
+
+The box model comprises the set of properties which define parts of an element that take up space on a web page. The model includes the content area's size (width and height) and the element's padding, border, and margin. The properties include:
+
+Width and height — specifies the width and height of the content area.
+Border — specifies the thickness and style of the border surrounding the content area and padding.
+Padding — specifies the amount of space between the content area and the border.
+Margin — specifies the amount of space between the border and the outside edge of the element.
+*/
+=======================================
+
+/*CSS Property for content's box: dimensions of content 'height' & 'width'
+/*By default, the dimensions of an HTML box are set to hold the raw contents of the box, whatever the size of the content is.
+The CSS height and width properties can be used to modify these default dimensions.*/
+p {
+  height: 80px;
+  width: 240px;
+}
+/*Note that, when the width and height of an element are set in pixels, it will be the same size on all devices.
+An element that fills a laptop screen will overflow a mobile screen.*/
+
+/*Restricting adjustments for margins:
+Because a web page can be viewed through displays of differing screen size, the content on the web page can suffer 
+from those changes in size. To avoid this problem, CSS offers two properties that can limit how narrow or how wide 
+an element's box size can go.
+
+min-width — this property ensures a minimum width of an element's box.
+max-width — this property ensures a maximum width of an element's box.*/
+p {
+  min-width: 300px;
+  max-width: 600px;
+}
+/*In the example above, the width of all paragraphs will not shrink below 300 pixels, 
+nor will the width exceed 600 pixels.*/
+
+/*You can also limit the minimum and maximum height of an element.
+max-height — this property ensures a maximum height of an element's box.*/
+p {
+  min-height: 150px;
+  max-height: 300px;
+}
+
+========================================
+
+/*CSS Property for content's box: border
+A border is a line that surrounds an element, like a frame around a painting. 
+*The 'border' property can be set with three values, defining specific, width, style, and color, in order.
+width — The thickness of the border. 
+	A border's thickness can be set in pixels or with one of the following keywords: thin, medium, or thick.
+style — The design of the border. 
+	Web browsers can render any of 10 different styles (https://developer.mozilla.org/en-US/docs/Web/CSS/border-style#Values). 
+  Some of these styles include: none, dotted, and solid.
+color — The color of the border. 
+	Web browsers can render colors using a few different formats, including 140 built-in color keywords (https://developer.mozilla.org/en-US/docs/Web/CSS/color_value).
+* The default border is medium none color, where color is the current color of the element. 
+  If width, style, or color are not set in the CSS file, the web browser assigns the default value for that property.
+*/
+p {
+  border: 3px solid coral;
+}
+=========================================
+/*CSS Property for content's box: border-radius
+* A border doesn't have to be square. You can modify the corners of an element's border box with the border-radius property.
+* The code in the example below will set all four corners of the border to a radius of 
+5 pixels (i.e. the same curvature that a circle with radius 5 pixels would have).
+*You can also create a border that is a perfect circle by setting the radius equal to the height of the box, or to 100%.
+*/
+
+div.container {
+  border: 3px solid rgb(22, 77, 100);
+  border-radius: 5px;
+}
+
+
+div.container {
+  height: 60px;
+  width: 60px;
+  border: 3px solid rgb(22, 77, 100);
+  border-radius: 100%;
+}
+============================================
+
+/*CSS Property for content's box: padding
+The space between the contents of a box and the borders of a box is known as padding. 
+Padding is like the space between a picture and the frame surrounding it. 
+In CSS, you can modify this space with the padding property.*/
+
+p.content-header {
+  border: 3px solid coral;
+  padding: 10px;
+}
+/*The code in this example puts 10 pixels of space between the content of the paragraph 
+(the text) and the borders, on all four sides.*/
+
+/*The padding property is often used to expand the background color 
+and make content look less cramped. If you want to be more specific about 
+the amount of padding on each side of a box's content, you can use the following properties:
+
+padding-top
+padding-right
+padding-bottom
+padding-left
+
+In the example below, only the bottom side of the paragraph's content will have a padding of 10 pixels.
+*/
+
+p.content-header {
+  border: 3px solid fuschia;
+  padding-bottom: 10px;
+}
+
+
+/*Another implementation of the padding property in a single declaration line as below-*/
+p.content-header {
+  border: 3px solid grey;
+  padding: 6px 11px 4px 9px;
+}
+/*In the example above, the four values 6px 11px 4px 9px correspond to the amount of padding in a clockwise rotation. 
+In order, it specifies the amount of padding on the top (6 pixels), right (11 pixels), 
+bottom (4 pixels), and left (9 pixels) sides of the content.
+
+When using this implementation of the padding property, we must specify a padding value for all four sides of the element.
+However, if the top and bottom values for padding will equal each other, 
+and the left and right values for padding will also equal each other, you can use the following shortcut:*/
+p.content-header {
+  padding: 5px 10px;
+}
+/*The first value, 5px, sets the padding value for the top and bottom sides of the content. 
+The second value, 10px, sets the padding value for the left and right sides of the content.*/
+==========================================
+
+/*CSS Property for content's box: margin
+Margin refers to the space directly outside of the box. The margin property is used to specify the size of this space.*/
+
+p {
+  border: 1px solid aquamarine;
+  margin: 20px;
+}
+/*The code in the example above will place 20 pixels of space on the outside of the paragraph's box on all four sides. 
+This means that other HTML elements on the page cannot come within 20 pixels of the paragraph's border.*/
+
+/*If you want to be even more specific about the amount of margin on each side of a box, 
+you can use the following properties:
+
+margin-top
+margin-right
+margin-bottom
+margin-left
+Each property affects the margin on only one side of the box, providing more flexibility in customization.
+When using this implementation of the margin property, the margin value must be specified for all four sides of the box.
+
+However, just like the padding shortcut, when you're certain that the top and bottom values for margin will equal each other, 
+and that the left and right values for margin will also equal each other, you can use the same shortcut:*/
+
+p {
+  margin: 6px 12px;
+}
+
+/*For just right side margin*/
+p {
+  border: 3px solid DarkSlateGrey;
+  margin-right: 15px;
+}
+
+/*For top, right, bottom, left*/
+p {
+  margin: 6px 10px 5px 12px;
+}
+
+/*The margin property also lets you center content with below syntax-*/
+div {
+  margin: 0 auto;
+}
+/*In the example above, margin: 0 auto; will center the divs in their containing elements. 
+The 0 sets the top and bottom margins to 0 pixels. You can define other values using unit like px.
+The auto value instructs the browser to adjust the left and right margins 
+until the element is centered within its containing element - refer to this following structure of HTML:
+<body>
+  <div>
+    <p>Something</p>
+  </div>
+</body>
+In order to center an element, <div> for above example, a width must be set for the containing/parent element as well 
+(<body> in or example). Otherwise, the width of the <div> will be automatically set to the full width of its containing 
+element <body>. It's not possible to center an element that takes up the full width of the page.
+*/
+
+div.headline {
+  width: 400px;
+  margin: 0 auto;
+}
+/*In the example above, the width of the div is set to 400 pixels, which is less than the width of most screens. 
+This will cause the div to center within a containing element that is greater than 400 pixels wide*/
+
+
+/*Margin Collapse:
+Similar to padding (space added between the content and the border of an element) margin is also space added 
+outside an element's border, with a difference of the top and bottom margins, also called vertical margins, collapse, 
+while top and bottom padding does not.
+Horizontal margins (left and right), like padding, are always displayed and added together. 
+For example, if two divs with ids #div-one and #div-two, are next to each other, they will be as far apart 
+as the sum of their adjacent margins. In the example below, the space between the #img-one and #img-two borders is 40 pixels. 
+The left margin of #img-one (20px) and the right margin of #img-two (20px) add to make a total margin of 40 pixels. 
+*/
+#img-one {
+  margin-left: 20px;
+}
+
+#img-two {
+  margin-right: 20px;
+}
+
+/*However, unlike horizontal margins, vertical margins do not add. 
+Instead, the larger of the two vertical margins sets the distance between adjacent elements.
+In the example below, the vertical margin between the #img-one and #img-two elements is 30 pixels. 
+Although the sum of the margins is 50 pixels, the margin collapses so the spacing is 
+only dependent on the #img-one bottom margin.
+*/
+
+#img-one {
+  margin-bottom: 30px;
+}
+
+#img-two {
+  margin-top: 20px;
+}
+
+==========================================================
+
+/*CSS Property for content's relative to it's box: overflow
+The overflow property controls what happens to content that spills, or overflows, outside its box. 
+It can be set to one of the following values:
+
+hidden - when set to this value, any content that overflows will be hidden from view.
+scroll - when set to this value, a scrollbar will be added to the element's box so that the rest of the content 
+can be viewed by scrolling.
+visible - when set to this value, the overflow content will be displayed outside of the containing element's box. 
+Note, this is the default value. In the example above, if any of the paragraph content overflows 
+(perhaps a user resizes their browser window), a scrollbar will appear so that users can view the rest of the content.
+*/
+p {
+  overflow: scroll; 
+}
+
+/*The overflow property is set on a parent element to instruct a web browser how to render child elements. 
+For example, if a div’s overflow property is set to scroll, all children of this div will display overflowing 
+content with a scroll bar.*/
+============================================
+/*User Agent: Default Stylesheet of Browser
+All major web browsers have a default stylesheet they use in the absence of an external stylesheet. 
+These default stylesheets are known as User Agent stylesheets. In this case, the term "user agent" is a technical term 
+for the browser. User agent stylesheets that comes with the browser often have default CSS rules that set default values 
+for padding and margin. This affects how the browser displays HTML elements, which can make it difficult for a developer 
+o design or style a web page. To resolve it, many developers choose to reset these default values so that the User Agent
+coming wiyth the browser can't take control and designers can truly work with a clean slate.
+In the example below, the structure resets the default margin and padding values in the User Agent that tries to control 
+all HTML elements. It is often the first CSS rule in an external stylesheet. Note that both properties are both set to 0. 
+When these properties are set to 0, they do not require a unit of measurement.*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+===========================================
+
+/*CSS Property: visibility
+Elements can be hidden from view with the visibility property. The visibility property can be set to one of the following values:
+hidden — hides an element.
+visible — displays an element.
+In the example below, the list item with a class of future will be hidden from view in the browser.
+Keep in mind, however, that users can still view the contents of the list item (e.g., Donate) by viewing the source code 
+n their browser. Furthermore, the web page will only hide the contents of the element. It will still leave an empty space 
+where the element is intended to display.
+*/
+
+<ul>
+  <li>Explore</li>
+  <li>Connect</li>
+  <li class="future">Donate</li>
+<ul>
+.future {
+  visibility: hidden;
+}
+
+=============================================
+/*SUMMARY OF ABOVE:;
+* I=The box model comprises a set of properties used to create space around and between HTML elements.
+* The height and width of a content area can be set in pixels or percentage.
+* Borders surround both the content and padding area of an element. The color, style, and thickness of a border 
+  can be set with CSS properties.
+* Padding is the space between the content area and the border. It can be set in pixels or percent.
+* Margin is the amount of spacing outside of an element's border.
+* Horizontal margins add, so the total space between the borders of adjacent elements is equal to the sum 
+  of the right margin of one element and the left margin of the adjacent element.
+* Vertical margins collapse, so the space between vertically adjacent elements is equal to the larger margin.
+* margin: 0 auto horizontally centers an element inside of its parent content area, if it has a width.
+* The overflow property can be set to display, hide, or scroll, and dictates how HTML will render content 
+  that overflows its parent's content area.
+* The visibility property can hide or show elements.
+*/
+======================================================
+/* CSS Property for content's box: box-sizing
+Problem with traditional box sizing system:
+Under the traditional box model, the border thickness and padding are added to the overall dimensions of the box. 
+This makes it difficult to accurately size a box. Over time, this can also make all of a web page's content difficult 
+to position and manage.
+
+There is a CSS property called 'box-sizing' that controls the type of box model the browser should use when interpreting 
+a web page. The default value of this property is 'content-box'. This is the same box model that is affected by border thickness and padding.
+
+We have another value for 'box-sizing', it's 'border-box'.
+
+The code in the example below resets the box model to border-box for all HTML elements. 
+This new box model avoids the dimensional issues that exist in the former box model of 'box-sizing: content-box;'.
+In this box model, the height and width of the box will remain fixed. The border thickness and padding will be included 
+inside of the box, which means the overall dimensions of the box do not change.
+In the example below, the height of the box would remain at 200 pixels and the width would remain at 300 pixels. 
+The border thickness and padding would remain entirely inside of the box. This happens by automatically adjusting the size
+of the content area based on the remaining width after border and padding has been subtracted.
+*/
+<h1>Hello World</h1>
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  border: 1px solid black;
+  height: 200px;
+  width: 300px;
+  padding: 10px;
+}
+=============================
+/* SUMMARY OF ABOVE:
+*  You learned about an important limitation of the default box model: box dimensions are affected by border thickness 
+  and padding.
+* In the default box model, box dimensions are affected by border thickness and padding.
+* The box-sizing property controls the box model used by the browser.
+* The default value of the box-sizing property is content-box.
+* The value for the new box model is border-box.
+* The border-box model is not affected by border thickness or padding.
+*/
+==========================
+/*CSS Property for block-level elemnts: position, top, bottom, left, right
+Block-level elements, such as <div> takes up their own line of sapce, like block, 
+which is the full width of their parent elements, and therefore don't overlap other elements by preventing other elements 
+from appearing in the same horizontal space. In the browser you can see block-level elements also consistently appear 
+on the left side of the browser. This is the default position for block-level elements.
+Look into the following HTML & CSS, this will create 2 blocks:
+*/
+<div class="boxes"></div>
+<div class="boxes"></div>
+
+.boxes {
+  width: 120px;
+  height: 70px;
+}
+/* The default position of an element can be changed by setting its CSS property called 'position'. 
+The position property can take one of four values:
+1. static 
+2. relative 
+3. absolute
+4. fixed
+*/
+
+/*1. static:
+The default value (it does not need to be specified if you favor the default position of an HTML element)
+*/
+/* 2. relative:
+This value allows you to position an element relative to its default static position on the web page.
+Look into the code below, although the code instructs the browser to expect a relative positioning of the div, 
+but it does not specify how and where the div should be relatively positioned on the page.*/
+.box-bottom {
+  background-color: DeepSkyBlue;
+  position: relative;
+}
+/*To help it, there are four other offset properties, top, bottom, left, and right. 
+These offset properties basically gives the measurement - which direction and how much should it move 
+relative to default position. Look into the below example: the <div> with class .box-bottom will be 
+moved down 20 pixels and to the right 50 pixels from its default static position.;
+*/
+.box-bottom {
+  background-color: DeepSkyBlue;
+  position: relative;
+  top: 20px;
+  left: 50px;
+}
+/*The valid offset properties are:
+top - moves the element down.
+bottom - moves the element up.
+left - moves the element right.
+right - moves the element left.
+Units for offset properties can be specified in pixels, ems, or percentages. 
+Note that offset properties will not work if the value of the element's position property is the default static.
+*/
+
+/* 3. absolute:
+When an element's position is set to absolute, all other elements on the page will ignore that element 
+and act like it is not present on the page. The element will be positioned relative to its closest positioned parent 
+element and will scroll/move up or down with the rest of the document when a user scrolls.
+In the example below, the .box-bottom <div> will be moved down and right from the top left corner 
+relative to its closest positioned parent element. 
+If offset properties weren't specified, the .box-bottom <div> would be entirely covering the closest positioned parent 
+element, which this .box-bottom <div> is relatively positioned to.  
+*/
+.box-bottom {
+  background-color: DeepSkyBlue;
+  position: absolute;
+  top: 20px;
+  left: 50px;
+}
+
+
+
+/* 4. fixed:
+If we want a box-level element to remain fixed to its position no matter where the user scrolls on the page, 
+then we can user the 'fixed' value for the 'position' CSS property. Similar to 'position: absolute;', 
+all other elements on the page will ignore that element and act like it is not present on the page as well as 
+the element will be positioned relative to its closest positioned parent, with an exception of that 
+it will NOT scroll/move up or down with the rest of the document when a user scrolls.  
+In the example below, the .box-bottom <div> will be moved down and right from the top left corner 
+relative to its closest positioned parent element but will not scroll/move away and stay visible when user scrolls.
+This technique is often used for navigation bars on a web page.  
+*/
+.box-bottom {
+  background-color: DeepSkyBlue;
+  position: fixed;
+  top: 20px;
+  left: 50px;
+}
+
+======================================
+/*CSS property: z-index
+When there is a CSS 'position' property with values relative/fixed/absolute attached to an element, 
+the the boxes of the elements (and therefore, their content) can overlap with each other, 
+making the content difficult to read or consume. For example below, the .box-bottom <div> ignores the .box-top <div> 
+and overlaps .box-top <div> as a user scrolls.
+*/
+.box-top {
+  background-color: Aquamarine;
+}
+
+.box-bottom {
+  background-color: DeepSkyBlue;
+  position: absolute;
+  top: 20px;
+  left: 50px;
+}
+/*The z-index property controls which block-element will take precendence in overlapping other, or int other words, 
+how far "back" or how far "forward" an element should appear on the web page when elements overlap. 
+This can be thought of the depth of elements, with deeper elements appearing behind shallower elements.
+The z-index property accepts integer values. Depending on their values, the integers instruct the browser on the order 
+in which elements should be displayed on the web page.
+In the example below, we set the .box-top z-index to 2 and .box-bottom z-index to 1. 
+Note that the z-index property does not work if there is a position set to static. 
+The z-index of 2 moves the .box-top element forward, because it is greater than the .box-bottom z-index, 1.
+*/
+.box-top {
+  background-color: Aquamarine;
+  position: relative;
+  z-index: 2;
+}
+
+.box-bottom {
+  background-color: DeepSkyBlue;
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  z-index: 1;
+}
+
+===========================================
+
+/*CSS Property: display
+Every HTML element has a default display value that dictates if it can share horizontal space with other elements. 
+Some elements fill the entire browser from left to right regardless of the size of their content. 
+Other elements only take up as much horizontal space as their content requires and can be directly next to other elements.
+The 'display' property can instruct if an element can share the leftover horizontal space with other elements.
+Some of the values for 'display' property are - inline, block, inline-block, none.
+*/
+
+/*'display: inline;'
+It is the default display for some tags, such as <em>, <strong>, and <a>. 
+Elements as such have a box that wraps tightly around their content, only taking up the amount of space necessary 
+to display their content and not requiring a new line after each element. The height and width of these elements 
+cannot be specified in the CSS document. For example, the text of an anchor tag (<a>) will, by default, be displayed 
+on the same line as the surrounding text, and it will only be as wide as necessary to contain its content. 
+inline elements cannot be altered in size with the height or width CSS properties. 
+In the example below, the <em> element is inline, because it displays its content on the same line as the content of <p> 
+surrounding it, including the anchor tag.
+*/
+<p>To learn more about <em>inline</em> elements, read <a href="#">MDN documentation</a></p>.
+
+/*However, aside the default elements with display:inline, the display property can be associated with other elements too
+to make them an inline element, such as paragraphs, divs, and headings.
+The CSS in the example below will change the display of all <h1> elements to inline. The browser will render any <h1> elements 
+on the same line as other inline elements surrounding it (immediately before or after them, if there are any).
+*/
+h1 {
+  display: inline;
+}
+
+/*'display: block;'
+Some elements are not displayed in the same line as the content around them. These are called block-level elements. 
+These elements fill the entire width of the page by default, but their width property can also be set. 
+Unless otherwise specified, they are the height necessary to accommodate their content.
+Elements that are block-level by default include all levels of heading elements (<h1> through <h6>), <p>, <div> and 
+<footer>. For a complete list of block level elements, visit the MDN documentation(https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements).
+In the example below, all <strong> elements will be displayed on their own line, 
+with no content directly on either side of them even though their contents may not fill the width of most computer screens.
+*/
+
+strong {
+  display: block;
+}
+
+/*'display: inline-block;'
+Inline-block display combines features of both inline and block elements. Inline-block elements can appear 
+next to each other and we can specify their dimensions using the width and height properties. 
+Images are the best example of default inline-block elements.
+In the example below, .rectangle <div>s will be displayed on the same line and with the specified dimensions.
+There are three rectangular divs that each contain a paragraph of text. The .rectangle <div>s will all appear inline 
+(provided there is enough space from left to right) with a width of 200 pixels and height of 300 pixels, 
+even though the text inside of them may not require 200 pixels by 300 pixels of space.
+*/
+<div class="rectangle">
+  <p>I’m a rectangle!</p>
+</div>
+<div class="rectangle">
+  <p>So am I!</p>
+</div>
+<div class="rectangle">
+  <p>Me three!</p>
+</div>
+
+.rectangle {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+}
+
+/*'display: none;'
+/*Note: What's the difference between display: none and visibility: hidden? 
+An element with display: none will be completely removed from the web page. 
+An element with visibility: hidden, however, will not be visible on the web page, but the space reserved for it will be visible.
+*/
+<ul>
+  <li>Explore</li>
+  <li>Connect</li>
+  <li class="future">Donate</li>
+<ul>
+.future {
+  display: none;
+}
+
+/*display: grid / inline-grid;
+To turn an HTML element into a grid container, you must set the element's display property to grid (for a block-level grid) 
+or inline-grid (for an inline grid). Then, you can assign other properties to lay out the grid.
+*/
+.quote{
+  display: grid;
+}
+
+.quote{
+  display: inline-grid;
+}
+===================================
+
+/*CSS Property: float
+If you're simply interested in moving an element as far left or as far right as possible on the page, 
+you can use the float property. It can be set to one of two values:
+left - this value will move, or float, elements as far left as possible.
+right - this value will move elements as far right as possible.
+In the example below, we float the .box-bottom element to the right. 
+Note that, if the element we are trying to float has a CSS property 'position', 
+then this will work for static and relative positioned elements. 
+Floated elements must have a width specified. Otherwise, the element will assume the full width of its containing element, 
+and changing the float value will not yield any visible results.
+*/
+
+.box-bottom {
+  background-color: DeepSkyBlue;
+  width: 10px;
+  float: right;
+}
+===================================
+/*CSS Property: clear
+The float property can also be used to float multiple elements at once. However, when multiple floated elements 
+have different heights, it can affect their layout on the page. Specifically, elements can "bump" into each other 
+and not allow other elements to properly move to the left or right. This is when 'clear' property can help.
+The clear property specifies how elements should behave when they bump into each other on the page. 
+It can take on one of the following values:
+left — the left side of the element will not touch any other element within the same containing element.
+right — the right side of the element will not touch any other element within the same containing element.
+both — neither side of the element will touch any other element within the same containing element.
+none — the element can touch either side.
+In the example below, all <div>s on the page are floated to the left side. However, the <div> element with class special 
+will not move all the way to the left because a taller <div> blocked its positioning. 
+By setting its clear property to left, the special <div> will be moved all the way to the left side of the page.
+*/
+div {
+  width: 200px;
+  float: left;
+}
+
+div.special {
+  clear: left;
+}
+
+======================================
+/*SUMMARY OF ABOVE:
+1. The position property allows you to specify the position of an element in three different ways.
+    - When set to relative, an element's position is relative to its default position on the page.
+    - When set to absolute, an element's position is relative to its closest positioned parent element. 
+      It can be pinned to any part of the web page, but the element will still move with the rest of the document 
+      when the page is scrolled.
+    - When set to fixed, an element's position can be pinned to any part of the web page. The element will remain in view 
+      no matter what.
+2. The z-index of an element specifies how far back or how far forward an element appears on the page 
+  when it overlaps other elements.
+3. The display property allows you control how an element is displayed vertically and horizontally a document in different ways
+    - inline elements take up as little space as possible, and they cannot have manually-adjusted width or height.
+    - block elements take up the width of their container and can have manually-adjusted heights.
+    - inline-block elements can have set width and height, but they can also appear next to each other 
+      and do not take up their entire container width.
+4. The float property can move elements as far left or as far right as possible on a web page.
+5. The clear property allowes you to clear an element's left or right side (or both).
+6. When combined with an understanding of the box model, positioning can create visually appealing web pages. 
+*/
+======================================
+
+/*CSS Color Schemes: CSS defined named colors
+Total available 147 colors
+*/
+
+/*CSS Color Scheme: Hex
+Stands for hexadecimal
+0-9,A-F
+#A42E80
+*/
+
+/*CSS Color Scheme: RGB
+Stands for Red, Green, Blue
+color: rgb(12, 143, 69);
+*/
+
+/*CSS Color Scheme: HSL 
+Stands for Hue, Saturation, Light
+The syntax for HSL is similar to the decimal form of RGB, though it differs in important ways. 
+The first number represents the degree of the hue, and can be between 0 and 360. 
+The second and third numbers are percentages representing saturation and lightness respectively. 
+Below is an example:
+
+color: hsl(120, 60%, 70%);
+
+Hue is the first number. It refers to an angle on a color wheel. 
+Red is 0 degrees, Green is 120 degrees, Blue is 240 degrees, and then back to Red at 360.
+
+Saturation refers to the intensity or purity of the color. 
+If you imagine a line segment drawn from the center of the color wheel to the perimeter, 
+the saturation is a point on that line segment. If you spin that line segment to different angles, 
+you'll see how that saturation looks for different hues. 
+The saturation increases towards 100% as the point gets closer to the edge (the color becomes more rich). 
+The saturation decreases towards 0% as the point gets closer to the center (the color becomes more gray).
+
+Lightness refers to how light or dark the color is. 
+Halfway, or 50%, is normal lightness. Imagine a sliding dimmer on a light switch that starts halfway. 
+Sliding the dimmer up towards 100% makes the color lighter, closer to white. 
+Sliding the dimmer down towards 0% makes the color darker, closer to black.
+
+HSL is convenient for adjusting colors. In RGB, making the color a little darker may affect all three color components. 
+In HSL, that's as easy as changing the lightness value. HSL is also useful for making a set of colors 
+that work well together by selecting various colors that have the same lightness and saturation but different hues.
+*/
+
+/*CSS Color Scheme: hsla
+When we overlap two opaque(non-transparent) elements, nothing from the bottom element shows through the top element. 
+We can change the opacity, or the amount of transparency, of some colors so that some or all of the bottom elements 
+are visible through a covering element. HSL has an extended version HSLA that allows you to do that within.
+To use opacity in the HSL color scheme, use hsla instead of hsl, and four values instead of three. For example:
+
+color: hsla(34, 100%, 50%, 0.1); 
+
+The RGB color scheme has a similar syntax for opacity, rgba.
+color: rgba(234, 45, 98, 0.33);
+
+Alpha can only be used with HSL and RGB colors.
+
+There is, however, a named color keyword for zero opacity, transparent. 
+It's equivalent to rgba(0, 0, 0, 0). It's used like any other color keyword, as below example:
+
+color: transparent;
+*/
+===========================
+/*SUMMARY OF ABOVE
+There are four ways to represent color in CSS:
+
+1. Named colors — there are 147 named colors, which you can review here.
+
+2. Hexadecimal or hex colors
+    Hexadecimal is a number system with has sixteen digits, 0 to 9 followed by "A" to "F".
+    Hex values always begin with # and specify values of red, blue and green using hexademical numbers such as #23F41A.
+
+3. RGB
+    RGB colors use the rgb() syntax with one value for red, one value for blue and one value for green.
+    RGB values range from 0 to 255 and look like this: rgb(7, 210, 50).
+
+4. HSL
+    HSL stands for hue (the color itself), saturation (the intensity of the color), and lightness (how light or dark a color is).
+    Hue ranges from 0 to 360 and saturation and lightness are both represented as percentages like this: hsl(200, 20%, 50%).
+    
+5. You can add opacity to color in RGB and HSL by adding a fourth value, a, which is represented as a percentage, 
+    or value between 0 and 1.
+*/
+==================================
+/*CSS Grid:
+The grid is a powerfool tool that can be used to lay out entire web pages. 
+CSS grid is most useful for two-dimensional layouts, providing many tools for aligning and moving elements across 
+both rows and columns. Some of the properties to create grid layouts are:
+- grid-template-columns
+- grid-template-rows
+- grid-template
+- grid-template-area
+- grid-gap
+- grid-row-start / grid-row-end
+- grid-column-start / grid-column-end
+- grid-area
+NOTE: CSS Grid is supported in the most recent versions of many browsers, but it is not supported universally. 
+To make sure that you can get the most out of this course, check your browser version (https://www.whatsmybrowser.org/)
+and see if it supports CSS Grid (https://caniuse.com/#feat=css-grid). 
+If CSS Grid is not supported in your browser, you should switch or update to a supported browser and version.
+*/
+======================================
+/* Creating a grid:
+To set up a grid, you need to have both a 'grid container' and 'grid items'. 
+The 'grid container' will be a parent element that contains 'grid items' as children 
+and applies overarching styling and positioning to them.
+To turn an HTML element into a 'grid container', you must set the element's display property to grid (for a block-level grid) 
+or inline-grid (for an inline grid). Then, you can assign other properties to lay out the grid.
+See the example below:
+*/
+<body>
+  <div class="grid">
+    <div class="box a">A</div>
+    <div class="box b">B</div>
+    <div class="box c">C</div>
+    <div class="box d">D</div>
+    <div class="box e">E</div>
+    <div class="box f">F</div>
+    <div class="box g">G</div>
+  </div>
+</body>
+
+.grid {
+  border: 2px blue solid;
+  width: 400px;
+  height: 500px;
+  display: grid;
+}
+=======================================
+/*CSS Property for creating grid column: grid-template-columns
+By default, grids contain only one column. If you were to start adding items, each item would be put on a new row; 
+that's not much of a grid! To change this, we need to explicitly define the number of rows and columns in our grid.
+We can define the columns of our grid by using the CSS property 'grid-template-columns'. 
+Below is an example of this property in action:
+This property creates two changes -  
+First, it defines the number of columns in the grid; in this case, there are two. 
+Second, it sets the width of each column. The first column will be 100 pixels wide and the second column will be 200 pixels wide.
+*/
+.grid {
+  display: grid;
+  width: 500px;
+  grid-template-columns: 100px 200px;
+}
+
+/*We can also define the size of our columns as a percentage of the entire grid's width.
+In the below example, the grid is 1000 pixels wide. Therefore, the first column will be 200 pixels wide 
+because it is set to be 20% of the grid's width. The second column will be 500 pixels wide.
+*/
+.grid {
+  display: grid;
+  width: 1000px;
+  grid-template-columns: 20% 50%;
+}
+
+/*We can also mix and match these two units. In the example below, there are three columns of width 20 pixels, 40 pixels, 
+and 60 pixels. Notice that in this example, the total width of our columns (120 pixels) which exceeds 
+the width of the grid (100 pixels). This might make our grid cover other elements on the page. 'Overflow' is a solution for this.
+*/
+
+.grid {
+  display: grid;
+  width: 100px;
+  grid-template-columns: 20px 40% 60px;
+}
+===========================
+/*CSS Property for creating grid row: grid-template-rows
+To specify the number and size of the rows, we are going to use the property grid-template-rows.
+In the below example, the grid has two columns and three rows. grid-template-rows defines the number of rows 
+and sets each row's height. In this example, the first row is 50 pixels tall (10% of 500), 
+the second row is 100 pixels tall (20% of 500), and the third row is 600 pixels tall.
+*/
+.grid {
+  display: grid;
+  width: 1000px;
+  height: 500px;
+  grid-template-columns: 100px 200px;
+  grid-template-rows: 10% 20% 600px;
+}
+/*
+When using percentages in these two properties, remember that rows are defined as a percentage of the grid's height, 
+and columns are defined as a percentage of its width.
+*/
+
